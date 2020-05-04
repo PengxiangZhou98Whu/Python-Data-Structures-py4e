@@ -1,0 +1,13 @@
+# Use the file name mbox-short.txt as the file name
+fname = input("Enter file name: ")
+fh = open(fname)
+count = 0  
+total = 0 
+for str in fh:
+    if str.startswith("X-DSPAM-Confidence:") :
+        count= count + 1 
+        pos = str.find(':')
+        number = float(str[pos+1:])
+        total = total + number
+final = total/count
+print("Average spam confidence:",final)
