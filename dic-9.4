@@ -1,0 +1,23 @@
+name = input("Enter file:")
+try:
+    handle = open(name)
+except:
+    print('File cannot be opened:', fname)
+counts = dict()
+email = list()
+for line in handle:
+    line=line.rstrip()
+    if line.startswith('From '):
+        words=line.split()
+        if len(words)>=2:
+            email.append(words[1])            
+for em in email:
+    counts[em] = counts.get(em, 0) + 1
+bigcount = None
+bigword = None
+for word,count in counts.items():
+    if bigcount is None or count > bigcount:
+        bigword = word
+        bigcount = count
+print(bigword, bigcount)
+
